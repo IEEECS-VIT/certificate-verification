@@ -7,9 +7,9 @@ from django.http import HttpResponse, FileResponse
 import img2pdf
 # Create cyour views here.
 
-def generate_certificate(request, id):
+def generate_certificate(request, slug):
     if request.method=='GET':
-        user_data = ParticipantData.objects.get(id=id)
+        user_data = ParticipantData.objects.get(slug=slug)
     
         #print(user_data.Full_Name)
         #print(user_data.Event_Name)
@@ -26,9 +26,9 @@ def generate_certificate(request, id):
 
         return response
 
-def convert_certificate_to_pdf(request, id):
+def convert_certificate_to_pdf(request, slug):
      if request.method=='GET':
-        user_data = ParticipantData.objects.get(id=id)
+        user_data = ParticipantData.objects.get(slug=slug)
     
         #print(user_data.Full_Name)
         #print(user_data.Event_Name)
@@ -57,11 +57,11 @@ def convert_certificate_to_pdf(request, id):
         return response
 
 
-def display_certificate(request, id):
+def display_certificate(request, slug):
     if request.method=='GET':
-        user_data = ParticipantData.objects.get(id=id)
+        user_data = ParticipantData.objects.get(slug=slug)
     
         #print(user_data.Full_Name)
         #print(user_data.Event_Name)
         certificate_data = Certificate.objects.get(id=user_data.Event_Name_id)
-        return render(request, 'view_certificate.html', {"id":id})
+        return render(request, 'view_certificate.html', {"slug":slug})
