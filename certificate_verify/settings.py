@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'qr_code',
     'import_export',
     'get_data',
     'upload_data',
