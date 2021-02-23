@@ -12,7 +12,19 @@ import random
 class Certificate(models.Model):
     Event_Name = models.TextField(max_length=50)
     image = models.ImageField(upload_to='certificates/')
-
+    text_color_R = models.IntegerField(default=0)
+    text_color_G = models.IntegerField(default=0)
+    text_color_B = models.IntegerField(default=0)
+    font_size = models.IntegerField(default=0)
+    font_type = models.TextField(max_length=50, blank=True)
+    participate_name_position_x = models.IntegerField(default=0)
+    participate_name_position_y = models.IntegerField(default=0)
+    event_name_position_x = models.IntegerField(default=0)
+    event_name_position_y = models.IntegerField(default=0)
+    qr_code_position_x = models.IntegerField(default=0)
+    qr_code_position_y = models.IntegerField(default=0)
+    qr_code_size_x = models.IntegerField(default=0)
+    qr_code_size_y = models.IntegerField(default=0)
     def __str__(self):
         return str(self.Event_Name)
 

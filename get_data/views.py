@@ -7,7 +7,7 @@ from django.http import HttpResponse, FileResponse
 import img2pdf
 import pyqrcode
 #import qrcode
-# Create cyour views here.
+# Create your views here.
 
 def generate_certificate(request, slug):
     if request.method=='GET':
@@ -19,16 +19,19 @@ def generate_certificate(request, slug):
         #print(certificate_data.image)
         im = Image.open(certificate_data.image)
         d = ImageDraw.Draw(im)
-        location = (100, 398)
-        text_color = (0, 137, 209)
-        font = ImageFont.truetype("arial.ttf", 120)
-        d.text(location, user_data.Full_Name, fill=text_color, font=font)
+        participate_name_location = (certificate_data.participate_name_position_x, certificate_data.participate_name_position_y)
+        event_name_location = (certificate_data.event_name_position_x, certificate_data.event_name_position_y)
+        text_color = (certificate_data.text_color_R, certificate_data.text_color_G, certificate_data.text_color_B)
+        font = ImageFont.truetype(certificate_data.font_type, certificate_data.font_size)
+        d.text(participate_name_location, user_data.Full_Name, fill=text_color, font=font)
+        d.text(event_name_location, certificate_data.Event_Name, fill=text_color, font=font)
         url = pyqrcode.QRCode("http://127.0.0.1:8000/get_data/generate_certificate/"+str(slug))
-        url.png('test.png', scale=5)
+        url.png('test.png', scale=1)
         qr = Image.open('test.png')
+        qr = qr.resize((certificate_data.qr_code_size_x, certificate_data.qr_code_size_y))
         qr = qr.convert("RGBA")
         im = im.convert("RGBA")
-        box = (0, 0, 265, 265)
+        box = (certificate_data.qr_code_position_x, certificate_data.qr_code_position_y)
         #qr.crop(box)
         #region = im
         print(im)
@@ -48,12 +51,25 @@ def convert_certificate_to_pdf(request, slug):
         certificate_data = Certificate.objects.get(id=user_data.Event_Name_id)
         #print(certificate_data.image)
         im = Image.open(certificate_data.image)
-        #print(im)
         d = ImageDraw.Draw(im)
-        location = (100, 398)
-        text_color = (0, 137, 209)
-        font = ImageFont.truetype("arial.ttf", 120)
-        d.text(location, user_data.Full_Name, fill=text_color, font=font)
+        participate_name_location = (certificate_data.participate_name_position_x, certificate_data.participate_name_position_y)
+        event_name_location = (certificate_data.event_name_position_x, certificate_data.event_name_position_y)
+        text_color = (certificate_data.text_color_R, certificate_data.text_color_G, certificate_data.text_color_B)
+        font = ImageFont.truetype(certificate_data.font_type, certificate_data.font_size)
+        d.text(participate_name_location, user_data.Full_Name, fill=text_color, font=font)
+        d.text(event_name_location, certificate_data.Event_Name, fill=text_color, font=font)
+        url = pyqrcode.QRCode("http://127.0.0.1:8000/get_data/generate_certificate/"+str(slug))
+        url.png('test.png', scale=1)
+        qr = Image.open('test.png')
+        qr = qr.resize((certificate_data.qr_code_size_x, certificate_data.qr_code_size_y))
+        qr = qr.convert("RGBA")
+        im = im.convert("RGBA")
+        box = (certificate_data.qr_code_position_x, certificate_data.qr_code_position_y)
+        #qr.crop(box)
+        #region = im
+        print(im)
+        print(qr)
+        im.paste(qr, box)
         Imgfile = im.convert("RGB")
         #pdf_bytes = img2pdf.convert(im)
         #print(pdf_bytes)
