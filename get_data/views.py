@@ -81,8 +81,8 @@ def convert_certificate_to_pdf(request, slug):
         img_bytes = img_bytes.getvalue()
         #print(img_bytes)
         response = HttpResponse(img_bytes , content_type='application/pdf')
-        response['Content-Disposition'] = 'inline; filename=' + str(user_data.Full_Name) + '.pdf'
-        
+        response['Content-Disposition'] = 'attachment; filename=' + str(user_data.Full_Name) + '.pdf'
+        #response = FileResponse(img_bytes)
         return response
 
 
