@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'import_export',
     'get_data',
     'upload_data',
+    'board_cert',
+    'get_board_data',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'certificate_verification',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': '9457047004',
         'HOST': 'localhost'
     }
 }

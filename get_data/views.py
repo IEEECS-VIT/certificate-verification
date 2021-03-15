@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from upload_data.models import ParticipantData, Certificate
+#from board_cert.models import Board_member_details, Board_Certificate
 from PIL import Image, ImageDraw, ImageFont
 import base64
 from io import BytesIO
 from django.http import HttpResponse, FileResponse
 import img2pdf
-import pyqrcode
+import pyqrcode 
 #import qrcode
 # Create your views here.
 
@@ -41,6 +42,7 @@ def generate_certificate(request, slug):
         response = HttpResponse(content_type='image/png')
         im.save(response, "PNG")
         return response
+
 
 def convert_certificate_to_pdf(request, slug):
      if request.method=='GET':
@@ -81,8 +83,8 @@ def convert_certificate_to_pdf(request, slug):
         img_bytes = img_bytes.getvalue()
         #print(img_bytes)
         response = HttpResponse(img_bytes , content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename=' + str(user_data.Full_Name) + '.pdf'
-        #response = FileResponse(img_bytes)
+        response['Content-Disposition'] = 'inline; filename=' + str(user_data.Full_Name) + '.pdf'
+        
         return response
 
 
