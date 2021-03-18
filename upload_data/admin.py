@@ -4,13 +4,15 @@ from import_export import resources
 from import_export.admin import ImportExportActionModelAdmin
 # Register your models here.
 
-class ParticipantResouce(resources.ModelResource):
+class ParticipantResource(resources.ModelResource):
     class Meta:
         model = ParticipantData
         fields = ('id', 'Full_Name', 'Event_Name', "Description")
 
 class ParticipantDataAdmin(ImportExportActionModelAdmin):
-    resource_class = ParticipantResouce
+    resource_class = ParticipantResource
+    exclude = ['slug']
+
 
 
 

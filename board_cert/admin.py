@@ -11,6 +11,7 @@ class BoardResource(resources.ModelResource):
 
 class BoardDataAdmin(ImportExportActionModelAdmin):
     resource_class = BoardResource
+    exclude = ["slug"] 
 
 admin.site.register(Board_member_details, BoardDataAdmin)
 admin.site.register(Board_Certificate)
