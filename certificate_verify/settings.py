@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'board_cert',
+    'get_board_data',
     'qr_code',
     'import_export',
     'get_data',
