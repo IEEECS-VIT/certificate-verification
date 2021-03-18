@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.template.defaultfilters import slugify
-
+from upload_data.models import FontStyle
 #from .utils import unique_slug_generator
 
 import string 
@@ -9,6 +9,8 @@ from django.utils.text import slugify
 import random 
 
 # Create your models here.
+
+
 class Board_Certificate(models.Model):
     Designation = models.TextField(default=None)
     image = models.ImageField(upload_to='certificates/')
@@ -16,7 +18,7 @@ class Board_Certificate(models.Model):
     text_color_G = models.IntegerField(default=0)
     text_color_B = models.IntegerField(default=0)
     font_size = models.IntegerField(default=0)
-    font_type = models.TextField(max_length=50, blank=True)
+    font_type = models.ForeignKey(to=FontStyle, on_delete=models.PROTECT, related_name="fontType")
     board_name_location_x = models.IntegerField(default=0)
     board_name_location_y = models.IntegerField(default=0)
     boardposition_name_location_x = models.IntegerField(default=0)

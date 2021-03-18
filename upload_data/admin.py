@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ParticipantData, Certificate
+from .models import ParticipantData, Certificate, FontStyle
 from import_export import resources
 from import_export.admin import ImportExportActionModelAdmin
 # Register your models here.
@@ -18,3 +18,4 @@ class ParticipantDataAdmin(ImportExportActionModelAdmin):
 
 admin.site.register(ParticipantData, ParticipantDataAdmin)
 admin.site.register(Certificate)
+admin.site.register(FontStyle)

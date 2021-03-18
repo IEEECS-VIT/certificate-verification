@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from board_cert.models import Board_member_details, Board_Certificate
+from board_cert.models import Board_member_details, Board_Certificate, FontStyle
 from PIL import Image, ImageDraw, ImageFont
 import base64
 from io import BytesIO
@@ -17,7 +17,8 @@ def generate_board_certificate(request, slug):
         board_name_location = (board_certificate_data.board_name_location_x, board_certificate_data.board_name_location_y)
         designation_name_location = (board_certificate_data.boardposition_name_location_x, board_certificate_data.boardposition_name_location_y)
         text_color = (board_certificate_data.text_color_R, board_certificate_data.text_color_G, board_certificate_data.text_color_B)
-        font = ImageFont.truetype(board_certificate_data.font_type, board_certificate_data.font_size)
+        font_style = FontStyle.objects.get(id=board_certificate_data.font_type_id)
+        font = ImageFont.truetype(font_style.font_type, board_certificate_data.font_size)
         d.text(board_name_location, board_data.Full_Name, fill=text_color, font=font)
         d.text(designation_name_location, board_certificate_data.Event_Name, fill=text_color, font=font)
         url = pyqrcode.QRCode("http://127.0.0.1:8000/get_board_data/generate_board_certificate/"+str(slug))
@@ -50,7 +51,8 @@ def convert_certificate_to_pdf(request, slug):
         participate_name_location = (certificate_data.board_name_location_x, certificate_data.board_name_location_y)
         event_name_location = (certificate_data.boardposition_name_location_x, certificate_data.boardposition_name_location_y)
         text_color = (certificate_data.text_color_R, certificate_data.text_color_G, certificate_data.text_color_B)
-        font = ImageFont.truetype(certificate_data.font_type, certificate_data.font_size)
+        font_style = FontStyle.objects.get(id=board_certificate_data.font_type_id)
+        font = ImageFont.truetype(font_style.font_type, board_certificate_data.font_size)
         d.text(participate_name_location, user_data.Board_Full_Name, fill=text_color, font=font)
         d.text(event_name_location, certificate_data.Designation, fill=text_color, font=font)
         url = pyqrcode.QRCode("http://127.0.0.1:8000/get_board_data/generate_board_certificate/"+str(slug))
