@@ -11,13 +11,16 @@ class ParticipantResource(resources.ModelResource):
     Event_Name = fields.Field(column_name='Event_Name', attribute='Event_Name', widget=ForeignKeyWidget(Certificate, 'Event_Name'))
     class Meta:
         model = ParticipantData
-        import_id_fields = ('Full_Name', 'Event_Name', "Description")
-        fields = ('Full_Name', 'Event_Name', "Description")
+        import_id_fields = ('id', 'Full_Name', 'Event_Name', "Description", 'slug')
+        fields = ('id', 'Full_Name', 'Event_Name', "Description", 'slug')
+        export_order = ('id', 'Full_Name', 'Event_Name', 'Description', 'slug')
+        
         
 
 class ParticipantDataAdmin(ImportExportActionModelAdmin):
     resource_class = ParticipantResource
-    exclude = ('id', 'slug')
+    list_display = ('id', 'Full_Name', 'Event_Name', 'Description', 'slug')
+   
     
 
 

@@ -29,7 +29,7 @@ def generate_certificate(request, slug):
         ########
         
 
-        url = pyqrcode.QRCode("http://127.0.0.1:8000/get_data/generate_certificate/"+str(slug)) # set dyanmic URL link into qr code 
+        url = pyqrcode.QRCode("http://127.0.0.1:8000/events/"+str(slug)) # set dyanmic URL link into qr code 
         url.png('test.png', scale=1)
         qr = Image.open('test.png')
         qr = qr.resize((certificate_data.qr_code_size_x, certificate_data.qr_code_size_y)) # set QR code position
@@ -60,7 +60,7 @@ def convert_certificate_to_pdf(request, slug):
         font = ImageFont.truetype(str(font_style.font_type), certificate_data.font_size) # set font size
         d.text(participate_name_location, user_data.Full_Name, fill=text_color, font=font)
         d.text(event_name_location, certificate_data.Event_Name, fill=text_color, font=font)
-        url = pyqrcode.QRCode("http://127.0.0.1:8000/get_data/generate_certificate/"+str(slug))
+        url = pyqrcode.QRCode("http://127.0.0.1:8000/events/"+str(slug))
         url.png('test.png', scale=1)
         qr = Image.open('test.png')
         qr = qr.resize((certificate_data.qr_code_size_x, certificate_data.qr_code_size_y))
@@ -83,5 +83,5 @@ def display_certificate(request, slug):
     if request.method=='GET':
         user_data = ParticipantData.objects.get(slug=slug)
         certificate_data = Certificate.objects.get(id=user_data.Event_Name_id)
-        return render(request, 'view_certificate.html', {"slug":slug, "description": user_data.Description})
+        return render(request, 'view_certificate.html', {"slug":slug, "description": user_data.Description, "name": user_data.Full_Name})
 #######

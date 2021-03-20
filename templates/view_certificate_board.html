@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>your certificate</title>
+    <title>{{first_name}} 's certificate</title>
     {% load static %}
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -27,14 +27,14 @@
           <div class="row">
             <div class="col-lg-7 p-4">
               <div id="cert-container">
-                  <img class="imagepdf" src="http://127.0.0.1:8000/get_board_data/generate_board_certificate/{{slug}}">
+                  <img class="imagepdf" src="http://127.0.0.1:8000/generate_board_certificate/{{slug}}">
               </div>
             </div>
             <div class="col-lg-5 col-md-8 cert-information-container">
               <div id="board-information" class="container p-0">
                 <div class="row w-100 m-0 mb-1" id='member-details'>                  
                   <div class="col-4 p-0 pb-2" id='member-avatar'>
-                      <img src="http://127.0.0.1:8000/get_board_data/board_profile_image/{{slug}}">
+                      <img src="http://127.0.0.1:8000/board_profile_image/{{slug}}">
                   </div>
 
                   <div class="col-lg-8 col-sm-8 p-0 pb-2 pl-4" id='member-info'>
@@ -82,7 +82,7 @@
 
                   <div class="row col-12 w-100 m-0 p-0">
                     <div class="col-6 download-container" >
-                      <a class="btn btn-primary" id="download" href="http://127.0.0.1:8000/get_board_data/convert_board_certificate_to_pdf/{{slug}}" download>Download Certificate</a>
+                      <a class="btn btn-primary" id="download" href="http://127.0.0.1:8000/convert_board_certificate_to_pdf/{{slug}}" download>Download Certificate</a>
                     </div>
                     <div class="col-6 share-container" >
                       <button id="share" type="button" class="btn btn-primary">Share Certificate</button>
@@ -96,7 +96,7 @@
                   <div class="row col-12 w-100 p-0 copy-link-parent">
                     
                       <div class="copy-link-container row w-100 m-0">
-                        <div id="link" class="col-9 p-0"> <p id='foo'>http://127.0.0.1:8000/get_board_data/display_board_certificate/{{slug}}</p> </div>
+                        <div id="link" class="col-9 p-0"> <p id='foo'>http://127.0.0.1:8000/board/{{slug}}</p> </div>
                         <div class="col-3 p-0"><button id="copy-link" data-clipboard-target="#foo" data-placement="top" title="Copied">Copy Link</button></div>
                       </div>
                     
