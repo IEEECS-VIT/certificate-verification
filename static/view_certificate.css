@@ -114,10 +114,17 @@ width: 80%;
 { 
   #member-name {
     padding-top: 0!important;
+<<<<<<< HEAD
   }
   #member-designation {
     margin-bottom: 5px!important;
   }
+=======
+  }
+  #member-designation {
+    margin-bottom: 5px!important;
+  }
+>>>>>>> 2bf9abe88f1919fc57a7bf431f792709fe49a49d
   #member-social .btn-lg {
     padding: 0 0.5rem 0 0!important;
     margin: 0!important;
