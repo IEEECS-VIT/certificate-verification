@@ -28,7 +28,7 @@ class Board_Certificate(models.Model):
     qr_code_size_x = models.IntegerField(default=0)
     qr_code_size_y = models.IntegerField(default=0)
     def __str__(self):
-        return str(self.image)
+        return str(self.Designation)
 
 
 class Board_member_details(models.Model):
@@ -36,6 +36,9 @@ class Board_member_details(models.Model):
     Designation = models.ForeignKey(to=Board_Certificate, on_delete=models.PROTECT, related_name="eventsname")
     Description_n_about = models.TextField()
     Photo = models.ImageField(upload_to='board_photos', blank = True)
+    facebook_link = models.TextField(max_length=250, default="")
+    linkedin_link = models.TextField(max_length=250, default="")
+    github_link = models.TextField(max_length=250, default="")
     slug = models.SlugField(max_length=50, null=True, blank=True)
 
     def __str__(self):
@@ -48,7 +51,7 @@ def unique_slug_generator_b(instance, new_slug = None):
     if new_slug is not None: 
         slug = new_slug 
     else: 
-        slug = slugify(instance.Full_Name) 
+        slug = slugify(instance.Board_Full_Name) 
     Klass = instance.__class__ 
     qs_exists = Klass.objects.filter(slug = slug).exists() 
         
