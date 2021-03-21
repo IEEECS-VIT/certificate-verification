@@ -87,10 +87,11 @@ WSGI_APPLICATION = 'certificate_verify.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'certificate_verification',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost'
+        'NAME': 'dfjpq7lhvkqv8m',
+        'USER': 'tkxqgzvchgfwyl',
+        'PASSWORD': '35039602f2fcb33f2343238e22af4069005f2d6d50643395da8971ed9c3e1cd5',
+        'HOST': 'ec2-35-171-57-132.compute-1.amazonaws.com',
+        'PORT': 5432
     }
 }
 
