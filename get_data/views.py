@@ -61,7 +61,7 @@ def convert_certificate_to_pdf(request, slug):
         text_color = (certificate_data.text_color_R, certificate_data.text_color_G, certificate_data.text_color_B)
         font_style = FontStyle.objects.get(id=certificate_data.font_type_id)
         #print(font_style.font_type)
-        font = ImageFont.truetype(str(font_style.font_type), certificate_data.font_size) # set font size
+        font = ImageFont.truetype("get_data/arial.ttf", certificate_data.font_size) # set font size
         d.text(participate_name_location, user_data.Full_Name, fill=text_color, font=font)
         d.text(event_name_location, certificate_data.Event_Name, fill=text_color, font=font)
         url = pyqrcode.QRCode("https://ieee-cs-cert-verify.herokuapp.com/events/"+str(slug))
