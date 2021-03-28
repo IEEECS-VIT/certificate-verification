@@ -158,7 +158,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DROPBOX_ACCESS_TOKEN = 'KN_KOSW1PQwAAAAAAAAAAV_vbM7Eg9umpTHUXf_yWrF_eFWFLS3BqYgRNIvsG66W'
-DROPBOX_ROOT_PATH = 'ieee-cs-cert-verify'
+DROPBOX_OAUTH2_TOKEN = 'KN_KOSW1PQwAAAAAAAAAAV_vbM7Eg9umpTHUXf_yWrF_eFWFLS3BqYgRNIvsG66W'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
