@@ -25,7 +25,7 @@ def generate_certificate(request, slug):
         font_style = FontStyle.objects.get(id=certificate_data.font_type_id)
         #print(font_style.font_type)
         try:
-            font = ImageFont.truetype("\arial.ttf", certificate_data.font_size) # set font size
+            font = ImageFont.truetype("/get_data/arial.ttf", certificate_data.font_size) # set font size
         except:
             font = ImageFont.load_default() # set font size
          
