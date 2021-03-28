@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_dropbox_storage',
-    'storage'
 ]
 
 MIDDLEWARE = [
