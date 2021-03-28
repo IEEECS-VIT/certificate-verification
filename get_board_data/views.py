@@ -18,7 +18,7 @@ def generate_board_certificate(request, slug):
         designation_name_location = (board_certificate_data.boardposition_name_location_x, board_certificate_data.boardposition_name_location_y)
         text_color = (board_certificate_data.text_color_R, board_certificate_data.text_color_G, board_certificate_data.text_color_B)
         font_style = FontStyle.objects.get(id=board_certificate_data.font_type_id)
-        font = ImageFont.truetype("get_board_data/arial.ttf", certificate_data.font_size)
+        font = ImageFont.truetype("get_board_data/arial.ttf", board_certificate_data.font_size)
         d.text(board_name_location, board_data.Board_Full_Name, fill=text_color, font=font)
         d.text(designation_name_location, board_certificate_data.Designation, fill=text_color, font=font)
         url = pyqrcode.QRCode("https://ieee-cs-cert-verify.herokuapp.com/board/"+str(slug))
