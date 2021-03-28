@@ -16,7 +16,6 @@ def generate_certificate(request, slug):
     if request.method=='GET':
         user_data = ParticipantData.objects.get(slug=slug)  # get specific user data from database using primary key "slug"
         certificate_data = Certificate.objects.get(id=user_data.Event_Name_id) # get certificate data from database using Event id (FK) where FK = foreign key
-        print(certificate_data.image)
         im = Image.open(certificate_data.image) # open image 
         d = ImageDraw.Draw(im) # code to give edit access to image selected 
         participate_name_location = (certificate_data.participate_name_position_x, certificate_data.participate_name_position_y) # give location in terms of co-ordinate for participant name in certificate  
@@ -24,7 +23,7 @@ def generate_certificate(request, slug):
         text_color = (certificate_data.text_color_R, certificate_data.text_color_G, certificate_data.text_color_B) # set color
         font_style = FontStyle.objects.get(id=certificate_data.font_type_id)
         #print(font_style.font_type)
-        font = ImageFont.truetype("arial.ttf", certificate_data.font_size) # set font size
+        font = ImageFont.load_default() # set font size
          
         ######## write text i.e full name, event name  into certificate
         d.text(participate_name_location, user_data.Full_Name, fill=text_color, font=font) 
