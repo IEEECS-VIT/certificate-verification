@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'certificate_verify.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
- DATABASES = {
+DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql',
          'NAME': 'dfjpq7lhvkqv8m',
@@ -96,8 +96,8 @@ WSGI_APPLICATION = 'certificate_verify.wsgi.application'
          'PASSWORD': '35039602f2fcb33f2343238e22af4069005f2d6d50643395da8971ed9c3e1cd5',
          'HOST': 'ec2-35-171-57-132.compute-1.amazonaws.com',
          'PORT': 5432
-     }
- }
+    }
+}
 
 """DATABASES = {
     'default': {
