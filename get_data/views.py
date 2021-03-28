@@ -6,6 +6,8 @@ from io import BytesIO
 from django.http import HttpResponse, FileResponse
 import img2pdf
 import pyqrcode
+import environ
+
 # Create your views here.
 
 
@@ -83,5 +85,7 @@ def display_certificate(request, slug):
     if request.method=='GET':
         user_data = ParticipantData.objects.get(slug=slug)
         certificate_data = Certificate.objects.get(id=user_data.Event_Name_id)
-        return render(request, 'view_certificate.html', {"slug":slug, "description": user_data.Description, "name": user_data.Full_Name})
+        return render(request, 'view_certificate.html', {"slug":slug, "description": user_data.Description, "name": user_data.Full_Name, 
+        "local_certificate_route": "http://127.0.0.1:8000/generate_certificate/"+str(slug),
+        "hosted_certificate_route": "https://ieee-cs-cert-verify.herokuapp.com/generate_certificate/"+str(slug)})
 #######

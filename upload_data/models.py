@@ -1,7 +1,9 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.template.defaultfilters import slugify
+from django_dropbox_storage.storage import DropboxStorage
 
+DROPBOX_STORAGE = DropboxStorage()
 #from .utils import unique_slug_generator
 
 import string 
@@ -16,7 +18,7 @@ class FontStyle(models.Model):
 
 class Certificate(models.Model):
     Event_Name = models.TextField(max_length=50)
-    image = models.ImageField(upload_to='certificates/')
+    image = models.ImageField(upload_to='certificates/', storage=DROPBOX_STORAGE)
     text_color_R = models.IntegerField(default=0)
     text_color_G = models.IntegerField(default=0)
     text_color_B = models.IntegerField(default=0)

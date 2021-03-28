@@ -14,8 +14,10 @@ from pathlib import Path
 import os
 import django_heroku
 import dj_database_url
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -47,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
+    'django_dropbox_storage'
 ]
 
 MIDDLEWARE = [
@@ -84,16 +88,26 @@ WSGI_APPLICATION = 'certificate_verify.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
+ DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql',
+         'NAME': 'dfjpq7lhvkqv8m',
+         'USER': 'tkxqgzvchgfwyl',
+         'PASSWORD': '35039602f2fcb33f2343238e22af4069005f2d6d50643395da8971ed9c3e1cd5',
+         'HOST': 'ec2-35-171-57-132.compute-1.amazonaws.com',
+         'PORT': 5432
+     }
+ }
+
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dfjpq7lhvkqv8m',
-        'USER': 'tkxqgzvchgfwyl',
-        'PASSWORD': '35039602f2fcb33f2343238e22af4069005f2d6d50643395da8971ed9c3e1cd5',
-        'HOST': 'ec2-35-171-57-132.compute-1.amazonaws.com',
-        'PORT': 5432
+        'NAME': 'certificate_verification',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost'
     }
-}
+}"""
 
 # DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -143,6 +157,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_ACCESS_TOKEN = 'KN_KOSW1PQwAAAAAAAAAAV_vbM7Eg9umpTHUXf_yWrF_eFWFLS3BqYgRNIvsG66W'
+DROPBOX_ROOT_PATH = 'ieee-cs-cert-verify'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
