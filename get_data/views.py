@@ -16,6 +16,7 @@ def generate_certificate(request, slug):
     if request.method=='GET':
         user_data = ParticipantData.objects.get(slug=slug)  # get specific user data from database using primary key "slug"
         certificate_data = Certificate.objects.get(id=user_data.Event_Name_id) # get certificate data from database using Event id (FK) where FK = foreign key
+        print(certificate_data.image)
         im = Image.open(certificate_data.image) # open image 
         d = ImageDraw.Draw(im) # code to give edit access to image selected 
         participate_name_location = (certificate_data.participate_name_position_x, certificate_data.participate_name_position_y) # give location in terms of co-ordinate for participant name in certificate  
