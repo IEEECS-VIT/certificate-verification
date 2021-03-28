@@ -7,6 +7,7 @@ from django.http import HttpResponse, FileResponse
 import img2pdf
 import pyqrcode
 import environ
+import matplotlib as fm
 
 # Create your views here.
 
@@ -24,10 +25,8 @@ def generate_certificate(request, slug):
         text_color = (certificate_data.text_color_R, certificate_data.text_color_G, certificate_data.text_color_B) # set color
         font_style = FontStyle.objects.get(id=certificate_data.font_type_id)
         #print(font_style.font_type)
-        try:
-            font = ImageFont.truetype("/"+str(font_style.font_type), certificate_data.font_size) # set font size
-        except:
-            font = ImageFont.load_default() # set font size
+        
+        font = ImageFont.truetype(fm.findfont(fm.FontProperties(family='DehaVu Sans')),certificate_data.font_size) # set font size
          
         ######## write text i.e full name, event name  into certificate
         d.text(participate_name_location, user_data.Full_Name, fill=text_color, font=font) 
