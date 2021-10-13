@@ -19,7 +19,7 @@
 ## STEP-5 Install requirements.txt
 ```pip install -r requirements.txt```
 
-## STEP-6 : Go to erp_backend/settings.py
+## STEP-6 : Go to certificate_verification/settings.py
 ##### Replace database_name, database_user and database_password in following code
 
 ```DATABASES = {
